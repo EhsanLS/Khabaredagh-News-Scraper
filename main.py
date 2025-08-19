@@ -1,3 +1,5 @@
+# version 2
+
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -46,47 +48,44 @@ def get_links(section_name):
     return section_links, section_news
 
 
-def make_page(en_section_name, fa_section_name, next_page_title='', next_page='', previous_page_title='', previous_page=''):
+def make_page(en_section_name, fa_section_name, next_page_title='', next_page='', previous_page_title='',
+              previous_page=''):
     base_url = 'https://khabaredagh.ir'
     section_news_list = get_links(en_section_name)[1]
     section_links_list = get_links(en_section_name)[0]
     with open(f"./html_directory/{en_section_name}.html", "w", encoding="utf-8") as file:
-        file.write("<!DOCTYPE html>")
-        file.write("<html lang='fa' dir='rtl'>")
-        file.write("<head>")
-        file.write("<style>a{text-decoration: none;}</style>")
-        file.write("<style>.center {margin-left: auto;margin-right: auto;}</style>")
-        file.write("<title>"'News'"</title>")
-        file.write("</head>")
-        file.write("<body>")
-        file.write(f"<div style='text-align: center;'><h1> {fa_section_name} </h1></div>")
-        file.write("<table class='center' border= '1' style= 'border-collapse: collapse'; >")
-        index3 = 0
-        while index3 < len(section_news_list) - 1:
-            file.write("<tr>")
-            file.write("<td>")
-            file.write("<br>")
-            if len(section_news_list[index3]) >= 100:
-                file.write(
-                    f"<li><a href='{base_url}{section_links_list[index3]}'>{section_news_list[index3][0:100] + ' ...'}</a></li>")
-            else:
-                file.write(f"<li><a href='{base_url}{section_links_list[index3]}'>{section_news_list[index3]}</a></li>")
-            file.write("</td>")
-            file.write("</tr>")
-            index3 += 1
-        file.write("</table>")
-        if next_page_title != '':
-            file.write("<br>")
-            file.write(f"<div style='text-align: center;'><a href='./{next_page}'>{next_page_title}</a></div>")
-            file.write("<br>")
-        if previous_page_title != '':
-            file.write(f"<div style='text-align: center;'><a href='./{previous_page}'>{previous_page_title}</a></div>")
-            file.write("<br>")
-        file.write(f"<div style='text-align: center;'><a href='./main.html'>صفحه اصلی</a></div>")
-        file.write("<br>")
-        file.write("<br>")
-        file.write("</body>")
-        file.write("</html>")
+        file.write("<!DOCTYPE html>\n")
+        file.write("<html lang='fa' dir='rtl'>\n")
+        file.write("<head>\n")
+        file.write("<meta charset='UTF-8'>\n")
+        file.write("<title>News</title>\n")
+        file.write("</head>\n")
+        file.write("<body>\n")
+
+        file.write(f"<div style='text-align: center;'><h1>{fa_section_name}</h1></div>\n")
+        file.write("<table border='1' style='margin: auto;'>\n")
+
+        for index in range(len(section_news_list)):
+            title = section_news_list[index]
+            link = section_links_list[index]
+            if len(title) > 100:
+                title = title[:100] + " ..."
+            file.write("<tr>\n")
+            file.write(f"<td><a href='{base_url}{link}' style='text-decoration: none;'>{title}</a></td>\n")
+            file.write("</tr>\n")
+
+        file.write("</table>\n")
+
+        if next_page_title:
+            file.write(
+                f"<div style='text-align: center;'><br><a href='./{next_page}' style='text-decoration: none;'>{next_page_title}</a></div>\n")
+        if previous_page_title:
+            file.write(
+                f"<div style='text-align: center;'><br><a href='./{previous_page}' style='text-decoration: none;'>{previous_page_title}</a></div>\n")
+
+        file.write("<div style='text-align: center;'><br><a href='./main.html' style='text-decoration: none;'>صفحه اصلی</a></div>\n")
+        file.write("</body>\n")
+        file.write("</html>\n")
     return f"{en_section_name}.html"
 
 
@@ -97,26 +96,38 @@ make_page('art-and-culture', 'فرهنگ و هنر', 'صفحه بعد', 'science
 make_page('science-and-technology', 'علم و فناوری', 'صفحه قبل', 'art-and-culture.html')
 
 with open("html_directory/main.html", "w", encoding="utf-8") as file:
-    file.write("<!DOCTYPE html>")
-    file.write("<html lang='fa' dir='rtl'>")
-    file.write("<head>")
-    file.write(
-        "<style>.centered-list{display: flex;flex-direction: column;"
-        "align-items: center;justify-content: center; height: 100vh;}</style>")
-    file.write("<style>li{font-size: 30px;}</style>")
-    file.write("<style>a{text-decoration: none;}</style>")
-    file.write("<title>"'News'"</title>")
-    file.write("</head>")
-    file.write("<body>")
-    file.write(
-        "<div class='centered-list'><ul>"
-        "<li><a href='sport.html'><b>ورزشی</b></a></li>"
-        "<li><a href='political.html'><b>سیاسی</b></a></li>"
-        "<li><a href='health.html'><b>سلامتی</b></a></li>"
-        "<li><a href='art-and-culture.html'><b>فرهنگ و هنر</b></a></li>"
-        "<li><a href='science-and-technology.html'><b>علم و فناوری</b></a></li></ul></div>")
-    file.write("</body>")
-    file.write("</html>")
+    file.write('''<!DOCTYPE html>
+<html lang='fa' dir='rtl'>
+<head>
+    <style>.centered-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }</style>
+    <style>li {
+        font-size: 30px;
+    }</style>
+    <style>a {
+        text-decoration: none;
+    }</style>
+    <title>News</title>
+</head>
+<body>
+<div class='centered-list'>
+    <ul>
+        <li><a href='sport.html'><b>ورزشی</b></a></li>
+        <li><a href='political.html'><b>سیاسی</b></a></li>
+        <li><a href='health.html'><b>سلامتی</b></a></li>
+        <li><a href='art-and-culture.html'><b>فرهنگ و هنر</b></a></li>
+        <li><a href='science-and-technology.html'><b>علم و فناوری</b></a></li>
+    </ul>
+</div>
+</body>
+</html>
+''')
+
 full_path = os.path.abspath('./html_directory/main.html')
 url = f'file://{full_path}'
 webbrowser.open(url)
