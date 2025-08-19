@@ -1,0 +1,23 @@
+# محیط مجازی
+.venv/
+env/
+*.pyc
+*.pyo
+**/__pycache__/
+__pycache__/
+*.swp
+
+# فایل‌های تنظیمات شخصی یا محلی
+*.env
+.env
+
+# کش پلتفرم‌ها
+.DS_Store
+Thumbs.db
+
+# فایل‌های توسعه
+.idea/
+*.log
+*.bak
+*.~*
+*.tmp
