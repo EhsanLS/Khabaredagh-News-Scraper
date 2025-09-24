@@ -81,7 +81,7 @@ def make_page(en_section_name, fa_section_name, next_page_title='', next_page=''
             file.write(
                 f"<div style='text-align: center;'><br><a href='./{previous_page}' style='text-decoration: none;'>{previous_page_title}</a></div>\n")
 
-        file.write("<div style='text-align: center;'><br><a href='./main.html' style='text-decoration: none;'>صفحه اصلی</a></div>\n")
+        file.write("<div style='text-align: center;'><br><a href='./index.html' style='text-decoration: none;'>صفحه اصلی</a></div>\n")
         file.write("</body>\n")
         file.write("</html>\n")
     return f"{en_section_name}.html"
@@ -93,7 +93,7 @@ make_page('health', 'سلامتی', 'صفحه بعد', 'art-and-culture.html', '
 make_page('art-and-culture', 'فرهنگ و هنر', 'صفحه بعد', 'science-and-technology.html', 'صفحه قبل', 'health.html')
 make_page('science-and-technology', 'علم و فناوری', 'صفحه قبل', 'art-and-culture.html')
 
-with open("html_directory/main.html", "w", encoding="utf-8") as file:
+with open("html_directory/index.html", "w", encoding="utf-8") as file:
     file.write('''<!DOCTYPE html>
 <html lang='fa' dir='rtl'>
 <head>
@@ -126,6 +126,6 @@ with open("html_directory/main.html", "w", encoding="utf-8") as file:
 </html>
 ''')
 
-full_path = os.path.abspath('./html_directory/main.html')
+full_path = os.path.abspath('./html_directory/index.html')
 url = f'file://{full_path}'
 webbrowser.open(url)
