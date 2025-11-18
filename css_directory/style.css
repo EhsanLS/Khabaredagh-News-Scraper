@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: blanchedalmond;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+div a {text-align: center;
+    text-decoration: none;
+    background-color: rgba(84, 35, 7, 0.247);
+    border: 1px solid rgba(146, 60, 11, 0.247);
+    border-radius: 15px;
+    padding: 25px;
+    color: rgb(42, 42, 42);
+}
+
+div a:hover {
+    background-color: burlywood;
+    transition-delay: 200ms;
+}

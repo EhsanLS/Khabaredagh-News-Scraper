@@ -54,34 +54,42 @@ def make_page(en_section_name, fa_section_name, next_page_title='', next_page=''
     with open(f"./html_directory/{en_section_name}.html", "w", encoding="utf-8") as file:
         file.write("<!DOCTYPE html>\n")
         file.write("<html lang='fa' dir='rtl'>\n")
-        file.write("<head>\n")
-        file.write("<meta charset='UTF-8'>\n")
-        file.write("<title>News</title>\n")
-        file.write("</head>\n")
+        file.write(
+            "<head>\n<meta charset='UTF-8'>\n<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n<title>News</title>\n<link rel='stylesheet' href='../css_directory/style1.css'>\n</head>\n")
         file.write("<body>\n")
+        file.write('<header>\n<div class="header-nav-bar">\n')
+        if previous_page_title:
+            file.write(
+                f"<a href='./{previous_page}'>{previous_page_title}</a>\n")
+        file.write("<a href='./index.html'>صفحه اصلی</a>\n")
+        if next_page_title:
+            file.write(
+                f"<a href='./{next_page}'>{next_page_title}</a>\n")
+        file.write("</div>\n")
 
-        file.write(f"<div style='text-align: center;'><h1>{fa_section_name}</h1></div>\n")
-        file.write("<table border='1' style='margin: auto;'>\n")
+        file.write(f"<h1>{fa_section_name}</h1>\n</header>\n")
+        file.write("<div id='content'>\n")
 
         for index in range(len(section_news_list)):
             title = section_news_list[index]
             link = section_links_list[index]
             if len(title) > 100:
                 title = title[:100] + " ..."
-            file.write("<tr>\n")
-            file.write(f"<td><a href='{base_url}{link}' style='text-decoration: none;'>{title}</a></td>\n")
-            file.write("</tr>\n")
 
-        file.write("</table>\n")
+            file.write(f"<a href='{base_url}{link}'>{title}</a>\n")
 
-        if next_page_title:
-            file.write(
-                f"<div style='text-align: center;'><br><a href='./{next_page}' style='text-decoration: none;'>{next_page_title}</a></div>\n")
+        file.write("</div>\n")
+
+        file.write("<div class='footer-nav-bar'>\n")
         if previous_page_title:
             file.write(
-                f"<div style='text-align: center;'><br><a href='./{previous_page}' style='text-decoration: none;'>{previous_page_title}</a></div>\n")
+                f"<a href='./{previous_page}'>{previous_page_title}</a>\n")
+        file.write("<a href='./index.html'>صفحه اصلی</a>\n")
+        if next_page_title:
+            file.write(
+                f"<a href='./{next_page}'>{next_page_title}</a>\n")
 
-        file.write("<div style='text-align: center;'><br><a href='./index.html' style='text-decoration: none;'>صفحه اصلی</a></div>\n")
+        file.write("</div>\n")
         file.write("</body>\n")
         file.write("</html>\n")
     return f"{en_section_name}.html"
@@ -97,31 +105,19 @@ with open("html_directory/index.html", "w", encoding="utf-8") as file:
     file.write('''<!DOCTYPE html>
 <html lang='fa' dir='rtl'>
 <head>
-    <style>.centered-list {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }</style>
-    <style>li {
-        font-size: 30px;
-    }</style>
-    <style>a {
-        text-decoration: none;
-    }</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News</title>
+    <link rel="stylesheet" href="../css_directory/style.css">
 </head>
 <body>
-<div class='centered-list'>
-    <ul>
-        <li><a href='sport.html'><b>ورزشی</b></a></li>
-        <li><a href='political.html'><b>سیاسی</b></a></li>
-        <li><a href='health.html'><b>سلامتی</b></a></li>
-        <li><a href='art-and-culture.html'><b>فرهنگ و هنر</b></a></li>
-        <li><a href='science-and-technology.html'><b>علم و فناوری</b></a></li>
-    </ul>
-</div>
+    <div>
+        <a href='sport.html'><b>ورزشی</b></a>
+        <a href='political.html'><b>سیاسی</b></a>
+        <a href='health.html'><b>سلامتی</b></a>
+        <a href='art-and-culture.html'><b>فرهنگ و هنر</b></a>
+        <a href='science-and-technology.html'><b>علم و فناوری</b></a>
+    </div>
 </body>
 </html>
 ''')
