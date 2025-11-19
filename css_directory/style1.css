@@ -1,44 +1,3 @@
-/* table,th,td {
-    border: 1px solid
-} */
-
-/* * {
-    margin: 0;
-} */
-
-
-/* منوی پروژه خبرداغ */
-/* body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: blanchedalmond;
-}
-
-div {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-div a {text-align: center;
-    text-decoration: none;
-    background-color: rgba(84, 35, 7, 0.247);
-    border: 1px solid rgba(146, 60, 11, 0.247);
-    border-radius: 15px;
-    padding: 25px;
-    color: rgb(42, 42, 42);
-}
-
-div a:hover {
-    background-color: burlywood;
-    transition-delay: 200ms;
-} */
-/* منوی پروژه خبرداغ */
-
 body {
     margin: 0;
     height: 100vh;
@@ -59,22 +18,28 @@ header {
 .header-nav-bar {
     display: flex;
     justify-content: space-between;
-    height: 40px;
+    height: 45px;
 }
 
 .header-nav-bar a {
     text-align: center;
     text-decoration: none;
-    background-color: rgba(84, 35, 7, 0.247);
+    /* background-color: rgba(84, 35, 7, 0.247); */
     border: 1px solid rgba(146, 60, 11, 0.247);
     border-radius: 15px;
     padding: 8px;
-    margin-top: 5px;
+    margin: 5px;
     color: rgb(42, 42, 42);
+}
+
+.header-nav-bar a:hover {
+    background-color: rgb(209, 166, 109);
+    transition-delay: 200ms;
 }
 
 h1 {
     text-align: center;
+    color: rgb(99, 64, 30);
 }
 
 
@@ -87,7 +52,10 @@ h1 {
 
 #content a {
     width: 80%;
-    text-align: center;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
     background-color: rgba(84, 35, 7, 0.247);
     border: 1px solid rgba(146, 60, 11, 0.247);
@@ -108,7 +76,7 @@ h1 {
 .footer-nav-bar {
     display: flex;
     justify-content: center;
-    height: 50px;
+    height: 65px;
     gap: 20px;
 }
 
@@ -120,5 +88,11 @@ h1 {
     border-radius: 15px;
     padding: 10px;
     margin-top: 15px;
+    margin-bottom: 10px;
     color: rgb(42, 42, 42);
+}
+
+.footer-nav-bar a:hover {
+    background-color: burlywood;
+    transition-delay: 200ms;
 }
